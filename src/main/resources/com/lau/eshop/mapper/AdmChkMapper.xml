@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lau.eshop.mapper.AdmChkMapper" >
+  <resultMap id="BaseResultMap" type="com.lau.eshop.entity.AdmChk" >
+    <id column="Sal_inf_id" property="salInfId" jdbcType="VARCHAR" />
+    <result column="Adm_chk_module" property="admChkModule" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Sal_inf_id, Adm_chk_module
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Adm_chk
+    where Sal_inf_id = #{salInfId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Adm_chk
+    where Sal_inf_id = #{salInfId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lau.eshop.entity.AdmChk" >
+    insert into Adm_chk (Sal_inf_id, Adm_chk_module)
+    values (#{salInfId,jdbcType=VARCHAR}, #{admChkModule,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lau.eshop.entity.AdmChk" >
+    insert into Adm_chk
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="salInfId != null" >
+        Sal_inf_id,
+      </if>
+      <if test="admChkModule != null" >
+        Adm_chk_module,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="salInfId != null" >
+        #{salInfId,jdbcType=VARCHAR},
+      </if>
+      <if test="admChkModule != null" >
+        #{admChkModule,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lau.eshop.entity.AdmChk" >
+    update Adm_chk
+    <set >
+      <if test="admChkModule != null" >
+        Adm_chk_module = #{admChkModule,jdbcType=CHAR},
+      </if>
+    </set>
+    where Sal_inf_id = #{salInfId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lau.eshop.entity.AdmChk" >
+    update Adm_chk
+    set Adm_chk_module = #{admChkModule,jdbcType=CHAR}
+    where Sal_inf_id = #{salInfId,jdbcType=VARCHAR}
+  </update>
+</mapper>

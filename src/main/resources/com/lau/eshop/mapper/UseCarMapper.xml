@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lau.eshop.mapper.UseCarMapper" >
+  <resultMap id="BaseResultMap" type="com.lau.eshop.entity.UseCarKey" >
+    <id column="Sal_pro_id" property="salProId" jdbcType="VARCHAR" />
+    <id column="Use_inf_id" property="useInfId" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.lau.eshop.entity.UseCarKey" >
+    delete from Use_car
+    where Sal_pro_id = #{salProId,jdbcType=VARCHAR}
+      and Use_inf_id = #{useInfId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lau.eshop.entity.UseCarKey" >
+    insert into Use_car (Sal_pro_id, Use_inf_id)
+    values (#{salProId,jdbcType=VARCHAR}, #{useInfId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lau.eshop.entity.UseCarKey" >
+    insert into Use_car
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="salProId != null" >
+        Sal_pro_id,
+      </if>
+      <if test="useInfId != null" >
+        Use_inf_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="salProId != null" >
+        #{salProId,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfId != null" >
+        #{useInfId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

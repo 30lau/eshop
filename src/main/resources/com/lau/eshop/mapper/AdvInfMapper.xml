@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lau.eshop.mapper.AdvInfMapper" >
+  <resultMap id="BaseResultMap" type="com.lau.eshop.entity.AdvInf" >
+    <id column="Adv_inf_id" property="advInfId" jdbcType="VARCHAR" />
+    <result column="Adm_inf_id" property="admInfId" jdbcType="VARCHAR" />
+    <result column="Adv_inf_name" property="advInfName" jdbcType="CHAR" />
+    <result column="Adv_inf_description" property="advInfDescription" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Adv_inf_id, Adm_inf_id, Adv_inf_name, Adv_inf_description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Adv_inf
+    where Adv_inf_id = #{advInfId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Adv_inf
+    where Adv_inf_id = #{advInfId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lau.eshop.entity.AdvInf" >
+    insert into Adv_inf (Adv_inf_id, Adm_inf_id, Adv_inf_name, 
+      Adv_inf_description)
+    values (#{advInfId,jdbcType=VARCHAR}, #{admInfId,jdbcType=VARCHAR}, #{advInfName,jdbcType=CHAR}, 
+      #{advInfDescription,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lau.eshop.entity.AdvInf" >
+    insert into Adv_inf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="advInfId != null" >
+        Adv_inf_id,
+      </if>
+      <if test="admInfId != null" >
+        Adm_inf_id,
+      </if>
+      <if test="advInfName != null" >
+        Adv_inf_name,
+      </if>
+      <if test="advInfDescription != null" >
+        Adv_inf_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="advInfId != null" >
+        #{advInfId,jdbcType=VARCHAR},
+      </if>
+      <if test="admInfId != null" >
+        #{admInfId,jdbcType=VARCHAR},
+      </if>
+      <if test="advInfName != null" >
+        #{advInfName,jdbcType=CHAR},
+      </if>
+      <if test="advInfDescription != null" >
+        #{advInfDescription,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lau.eshop.entity.AdvInf" >
+    update Adv_inf
+    <set >
+      <if test="admInfId != null" >
+        Adm_inf_id = #{admInfId,jdbcType=VARCHAR},
+      </if>
+      <if test="advInfName != null" >
+        Adv_inf_name = #{advInfName,jdbcType=CHAR},
+      </if>
+      <if test="advInfDescription != null" >
+        Adv_inf_description = #{advInfDescription,jdbcType=CHAR},
+      </if>
+    </set>
+    where Adv_inf_id = #{advInfId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lau.eshop.entity.AdvInf" >
+    update Adv_inf
+    set Adm_inf_id = #{admInfId,jdbcType=VARCHAR},
+      Adv_inf_name = #{advInfName,jdbcType=CHAR},
+      Adv_inf_description = #{advInfDescription,jdbcType=CHAR}
+    where Adv_inf_id = #{advInfId,jdbcType=VARCHAR}
+  </update>
+</mapper>

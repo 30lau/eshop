@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lau.eshop.mapper.AdmInfMapper" >
+  <resultMap id="BaseResultMap" type="com.lau.eshop.entity.AdmInf" >
+    <id column="Adm_inf_id" property="admInfId" jdbcType="VARCHAR" />
+    <result column="Adm_inf_name" property="admInfName" jdbcType="CHAR" />
+    <result column="Adm_inf_sex" property="admInfSex" jdbcType="CHAR" />
+    <result column="Adm_inf_role" property="admInfRole" jdbcType="CHAR" />
+    <result column="Adm_inf_pw" property="admInfPw" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Adm_inf_id, Adm_inf_name, Adm_inf_sex, Adm_inf_role, Adm_inf_pw
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Adm_inf
+    where Adm_inf_id = #{admInfId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Adm_inf
+    where Adm_inf_id = #{admInfId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lau.eshop.entity.AdmInf" >
+    insert into Adm_inf (Adm_inf_id, Adm_inf_name, Adm_inf_sex, 
+      Adm_inf_role, Adm_inf_pw)
+    values (#{admInfId,jdbcType=VARCHAR}, #{admInfName,jdbcType=CHAR}, #{admInfSex,jdbcType=CHAR}, 
+      #{admInfRole,jdbcType=CHAR}, #{admInfPw,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lau.eshop.entity.AdmInf" >
+    insert into Adm_inf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="admInfId != null" >
+        Adm_inf_id,
+      </if>
+      <if test="admInfName != null" >
+        Adm_inf_name,
+      </if>
+      <if test="admInfSex != null" >
+        Adm_inf_sex,
+      </if>
+      <if test="admInfRole != null" >
+        Adm_inf_role,
+      </if>
+      <if test="admInfPw != null" >
+        Adm_inf_pw,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="admInfId != null" >
+        #{admInfId,jdbcType=VARCHAR},
+      </if>
+      <if test="admInfName != null" >
+        #{admInfName,jdbcType=CHAR},
+      </if>
+      <if test="admInfSex != null" >
+        #{admInfSex,jdbcType=CHAR},
+      </if>
+      <if test="admInfRole != null" >
+        #{admInfRole,jdbcType=CHAR},
+      </if>
+      <if test="admInfPw != null" >
+        #{admInfPw,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lau.eshop.entity.AdmInf" >
+    update Adm_inf
+    <set >
+      <if test="admInfName != null" >
+        Adm_inf_name = #{admInfName,jdbcType=CHAR},
+      </if>
+      <if test="admInfSex != null" >
+        Adm_inf_sex = #{admInfSex,jdbcType=CHAR},
+      </if>
+      <if test="admInfRole != null" >
+        Adm_inf_role = #{admInfRole,jdbcType=CHAR},
+      </if>
+      <if test="admInfPw != null" >
+        Adm_inf_pw = #{admInfPw,jdbcType=CHAR},
+      </if>
+    </set>
+    where Adm_inf_id = #{admInfId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lau.eshop.entity.AdmInf" >
+    update Adm_inf
+    set Adm_inf_name = #{admInfName,jdbcType=CHAR},
+      Adm_inf_sex = #{admInfSex,jdbcType=CHAR},
+      Adm_inf_role = #{admInfRole,jdbcType=CHAR},
+      Adm_inf_pw = #{admInfPw,jdbcType=CHAR}
+    where Adm_inf_id = #{admInfId,jdbcType=VARCHAR}
+  </update>
+</mapper>

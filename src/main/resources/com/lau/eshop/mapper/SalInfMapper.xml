@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lau.eshop.mapper.SalInfMapper" >
+  <resultMap id="BaseResultMap" type="com.lau.eshop.entity.SalInf" >
+    <id column="Sal_inf_id" property="salInfId" jdbcType="VARCHAR" />
+    <result column="Sal_inf_name" property="salInfName" jdbcType="CHAR" />
+    <result column="Sal_inf_description" property="salInfDescription" jdbcType="CHAR" />
+    <result column="Sal_inf_pw" property="salInfPw" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Sal_inf_id, Sal_inf_name, Sal_inf_description, Sal_inf_pw
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Sal_inf
+    where Sal_inf_id = #{salInfId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Sal_inf
+    where Sal_inf_id = #{salInfId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lau.eshop.entity.SalInf" >
+    insert into Sal_inf (Sal_inf_id, Sal_inf_name, Sal_inf_description, 
+      Sal_inf_pw)
+    values (#{salInfId,jdbcType=VARCHAR}, #{salInfName,jdbcType=CHAR}, #{salInfDescription,jdbcType=CHAR}, 
+      #{salInfPw,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lau.eshop.entity.SalInf" >
+    insert into Sal_inf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="salInfId != null" >
+        Sal_inf_id,
+      </if>
+      <if test="salInfName != null" >
+        Sal_inf_name,
+      </if>
+      <if test="salInfDescription != null" >
+        Sal_inf_description,
+      </if>
+      <if test="salInfPw != null" >
+        Sal_inf_pw,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="salInfId != null" >
+        #{salInfId,jdbcType=VARCHAR},
+      </if>
+      <if test="salInfName != null" >
+        #{salInfName,jdbcType=CHAR},
+      </if>
+      <if test="salInfDescription != null" >
+        #{salInfDescription,jdbcType=CHAR},
+      </if>
+      <if test="salInfPw != null" >
+        #{salInfPw,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lau.eshop.entity.SalInf" >
+    update Sal_inf
+    <set >
+      <if test="salInfName != null" >
+        Sal_inf_name = #{salInfName,jdbcType=CHAR},
+      </if>
+      <if test="salInfDescription != null" >
+        Sal_inf_description = #{salInfDescription,jdbcType=CHAR},
+      </if>
+      <if test="salInfPw != null" >
+        Sal_inf_pw = #{salInfPw,jdbcType=CHAR},
+      </if>
+    </set>
+    where Sal_inf_id = #{salInfId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lau.eshop.entity.SalInf" >
+    update Sal_inf
+    set Sal_inf_name = #{salInfName,jdbcType=CHAR},
+      Sal_inf_description = #{salInfDescription,jdbcType=CHAR},
+      Sal_inf_pw = #{salInfPw,jdbcType=CHAR}
+    where Sal_inf_id = #{salInfId,jdbcType=VARCHAR}
+  </update>
+</mapper>

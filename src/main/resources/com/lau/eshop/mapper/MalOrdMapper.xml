@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lau.eshop.mapper.MalOrdMapper" >
+  <resultMap id="BaseResultMap" type="com.lau.eshop.entity.MalOrd" >
+    <id column="Mal_ord_id" property="malOrdId" jdbcType="VARCHAR" />
+    <result column="Use_inf_id" property="useInfId" jdbcType="VARCHAR" />
+    <result column="Mal_pro_id" property="malProId" jdbcType="VARCHAR" />
+    <result column="Mal_ord_time" property="malOrdTime" jdbcType="TIMESTAMP" />
+    <result column="Mal_ord_price" property="malOrdPrice" jdbcType="REAL" />
+    <result column="Mal_ord_count" property="malOrdCount" jdbcType="INTEGER" />
+    <result column="Mal_ord_tel" property="malOrdTel" jdbcType="DECIMAL" />
+    <result column="Mal_ord_addr" property="malOrdAddr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Mal_ord_id, Use_inf_id, Mal_pro_id, Mal_ord_time, Mal_ord_price, Mal_ord_count, Mal_ord_tel, 
+    Mal_ord_addr
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Mal_ord
+    where Mal_ord_id = #{malOrdId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Mal_ord
+    where Mal_ord_id = #{malOrdId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lau.eshop.entity.MalOrd" >
+    insert into Mal_ord (Mal_ord_id, Use_inf_id, Mal_pro_id, 
+      Mal_ord_time, Mal_ord_price, Mal_ord_count, 
+      Mal_ord_tel, Mal_ord_addr)
+    values (#{malOrdId,jdbcType=VARCHAR}, #{useInfId,jdbcType=VARCHAR}, #{malProId,jdbcType=VARCHAR}, 
+      #{malOrdTime,jdbcType=TIMESTAMP}, #{malOrdPrice,jdbcType=REAL}, #{malOrdCount,jdbcType=INTEGER}, 
+      #{malOrdTel,jdbcType=DECIMAL}, #{malOrdAddr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lau.eshop.entity.MalOrd" >
+    insert into Mal_ord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="malOrdId != null" >
+        Mal_ord_id,
+      </if>
+      <if test="useInfId != null" >
+        Use_inf_id,
+      </if>
+      <if test="malProId != null" >
+        Mal_pro_id,
+      </if>
+      <if test="malOrdTime != null" >
+        Mal_ord_time,
+      </if>
+      <if test="malOrdPrice != null" >
+        Mal_ord_price,
+      </if>
+      <if test="malOrdCount != null" >
+        Mal_ord_count,
+      </if>
+      <if test="malOrdTel != null" >
+        Mal_ord_tel,
+      </if>
+      <if test="malOrdAddr != null" >
+        Mal_ord_addr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="malOrdId != null" >
+        #{malOrdId,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfId != null" >
+        #{useInfId,jdbcType=VARCHAR},
+      </if>
+      <if test="malProId != null" >
+        #{malProId,jdbcType=VARCHAR},
+      </if>
+      <if test="malOrdTime != null" >
+        #{malOrdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="malOrdPrice != null" >
+        #{malOrdPrice,jdbcType=REAL},
+      </if>
+      <if test="malOrdCount != null" >
+        #{malOrdCount,jdbcType=INTEGER},
+      </if>
+      <if test="malOrdTel != null" >
+        #{malOrdTel,jdbcType=DECIMAL},
+      </if>
+      <if test="malOrdAddr != null" >
+        #{malOrdAddr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lau.eshop.entity.MalOrd" >
+    update Mal_ord
+    <set >
+      <if test="useInfId != null" >
+        Use_inf_id = #{useInfId,jdbcType=VARCHAR},
+      </if>
+      <if test="malProId != null" >
+        Mal_pro_id = #{malProId,jdbcType=VARCHAR},
+      </if>
+      <if test="malOrdTime != null" >
+        Mal_ord_time = #{malOrdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="malOrdPrice != null" >
+        Mal_ord_price = #{malOrdPrice,jdbcType=REAL},
+      </if>
+      <if test="malOrdCount != null" >
+        Mal_ord_count = #{malOrdCount,jdbcType=INTEGER},
+      </if>
+      <if test="malOrdTel != null" >
+        Mal_ord_tel = #{malOrdTel,jdbcType=DECIMAL},
+      </if>
+      <if test="malOrdAddr != null" >
+        Mal_ord_addr = #{malOrdAddr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Mal_ord_id = #{malOrdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lau.eshop.entity.MalOrd" >
+    update Mal_ord
+    set Use_inf_id = #{useInfId,jdbcType=VARCHAR},
+      Mal_pro_id = #{malProId,jdbcType=VARCHAR},
+      Mal_ord_time = #{malOrdTime,jdbcType=TIMESTAMP},
+      Mal_ord_price = #{malOrdPrice,jdbcType=REAL},
+      Mal_ord_count = #{malOrdCount,jdbcType=INTEGER},
+      Mal_ord_tel = #{malOrdTel,jdbcType=DECIMAL},
+      Mal_ord_addr = #{malOrdAddr,jdbcType=VARCHAR}
+    where Mal_ord_id = #{malOrdId,jdbcType=VARCHAR}
+  </update>
+</mapper>

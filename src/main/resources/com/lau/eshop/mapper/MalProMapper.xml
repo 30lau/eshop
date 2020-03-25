@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lau.eshop.mapper.MalProMapper" >
+  <resultMap id="BaseResultMap" type="com.lau.eshop.entity.MalPro" >
+    <id column="Mal_pro_id" property="malProId" jdbcType="VARCHAR" />
+    <result column="Mal_pro_name" property="malProName" jdbcType="VARCHAR" />
+    <result column="Mal_pro_credit" property="malProCredit" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Mal_pro_id, Mal_pro_name, Mal_pro_credit
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Mal_pro
+    where Mal_pro_id = #{malProId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Mal_pro
+    where Mal_pro_id = #{malProId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lau.eshop.entity.MalPro" >
+    insert into Mal_pro (Mal_pro_id, Mal_pro_name, Mal_pro_credit
+      )
+    values (#{malProId,jdbcType=VARCHAR}, #{malProName,jdbcType=VARCHAR}, #{malProCredit,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lau.eshop.entity.MalPro" >
+    insert into Mal_pro
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="malProId != null" >
+        Mal_pro_id,
+      </if>
+      <if test="malProName != null" >
+        Mal_pro_name,
+      </if>
+      <if test="malProCredit != null" >
+        Mal_pro_credit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="malProId != null" >
+        #{malProId,jdbcType=VARCHAR},
+      </if>
+      <if test="malProName != null" >
+        #{malProName,jdbcType=VARCHAR},
+      </if>
+      <if test="malProCredit != null" >
+        #{malProCredit,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lau.eshop.entity.MalPro" >
+    update Mal_pro
+    <set >
+      <if test="malProName != null" >
+        Mal_pro_name = #{malProName,jdbcType=VARCHAR},
+      </if>
+      <if test="malProCredit != null" >
+        Mal_pro_credit = #{malProCredit,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Mal_pro_id = #{malProId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lau.eshop.entity.MalPro" >
+    update Mal_pro
+    set Mal_pro_name = #{malProName,jdbcType=VARCHAR},
+      Mal_pro_credit = #{malProCredit,jdbcType=INTEGER}
+    where Mal_pro_id = #{malProId,jdbcType=VARCHAR}
+  </update>
+</mapper>

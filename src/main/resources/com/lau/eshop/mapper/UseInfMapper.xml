@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lau.eshop.mapper.UseInfMapper" >
+  <resultMap id="BaseResultMap" type="com.lau.eshop.entity.UseInf" >
+    <id column="Use_inf_id" property="useInfId" jdbcType="VARCHAR" />
+    <result column="Use_inf_name" property="useInfName" jdbcType="VARCHAR" />
+    <result column="Use_inf_pw" property="useInfPw" jdbcType="VARCHAR" />
+    <result column="Use_inf_sex" property="useInfSex" jdbcType="VARCHAR" />
+    <result column="Use_inf_money" property="useInfMoney" jdbcType="REAL" />
+    <result column="Use_inf_rolename" property="useInfRolename" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Use_inf_id, Use_inf_name, Use_inf_pw, Use_inf_sex, Use_inf_money, Use_inf_rolename
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Use_inf
+    where Use_inf_id = #{useInfId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Use_inf
+    where Use_inf_id = #{useInfId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lau.eshop.entity.UseInf" >
+    insert into Use_inf (Use_inf_id, Use_inf_name, Use_inf_pw, 
+      Use_inf_sex, Use_inf_money, Use_inf_rolename
+      )
+    values (#{useInfId,jdbcType=VARCHAR}, #{useInfName,jdbcType=VARCHAR}, #{useInfPw,jdbcType=VARCHAR}, 
+      #{useInfSex,jdbcType=VARCHAR}, #{useInfMoney,jdbcType=REAL}, #{useInfRolename,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lau.eshop.entity.UseInf" >
+    insert into Use_inf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="useInfId != null" >
+        Use_inf_id,
+      </if>
+      <if test="useInfName != null" >
+        Use_inf_name,
+      </if>
+      <if test="useInfPw != null" >
+        Use_inf_pw,
+      </if>
+      <if test="useInfSex != null" >
+        Use_inf_sex,
+      </if>
+      <if test="useInfMoney != null" >
+        Use_inf_money,
+      </if>
+      <if test="useInfRolename != null" >
+        Use_inf_rolename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="useInfId != null" >
+        #{useInfId,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfName != null" >
+        #{useInfName,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfPw != null" >
+        #{useInfPw,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfSex != null" >
+        #{useInfSex,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfMoney != null" >
+        #{useInfMoney,jdbcType=REAL},
+      </if>
+      <if test="useInfRolename != null" >
+        #{useInfRolename,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lau.eshop.entity.UseInf" >
+    update Use_inf
+    <set >
+      <if test="useInfName != null" >
+        Use_inf_name = #{useInfName,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfPw != null" >
+        Use_inf_pw = #{useInfPw,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfSex != null" >
+        Use_inf_sex = #{useInfSex,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfMoney != null" >
+        Use_inf_money = #{useInfMoney,jdbcType=REAL},
+      </if>
+      <if test="useInfRolename != null" >
+        Use_inf_rolename = #{useInfRolename,jdbcType=CHAR},
+      </if>
+    </set>
+    where Use_inf_id = #{useInfId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lau.eshop.entity.UseInf" >
+    update Use_inf
+    set Use_inf_name = #{useInfName,jdbcType=VARCHAR},
+      Use_inf_pw = #{useInfPw,jdbcType=VARCHAR},
+      Use_inf_sex = #{useInfSex,jdbcType=VARCHAR},
+      Use_inf_money = #{useInfMoney,jdbcType=REAL},
+      Use_inf_rolename = #{useInfRolename,jdbcType=CHAR}
+    where Use_inf_id = #{useInfId,jdbcType=VARCHAR}
+  </update>
+</mapper>
